@@ -7,93 +7,257 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-    body {
-      background-color: #1b1b1b;
-      color: #e0e0e0;
-      font-family: 'Inter', sans-serif;
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 1.5rem;
-      line-height: 1.8;
-      background-image: radial-gradient(circle at top left, #2b2b2b, #1b1b1b);
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    h1, h2 {
-      color: #f5b4c3;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1b1b1b;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      background: #2b2b2b;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    #language-toggle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    #language-toggle button {
+      background-color: transparent;
+      color: #ffd6a5;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
       font-weight: 600;
-      margin-top: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #language-toggle button:hover {
+      background-color: #f5b4c3;
+      color: #282828;
+    }
+
+    .header-center {
+      text-align: center;
+    }
+
+    .header-center h1 {
+      font-size: 2.5rem;
+      color: #f5b4c3;
+    }
+
+    .header-center p {
+      margin-top: 0.5rem;
+      color: #ffffff;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #f5b4c3;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.3rem;
+    }
+
+    .info-list, .project-content {
+      background-color: #282828;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(255, 195, 220, 0.05);
+    }
+
+    .project-content + .project-content {
+      margin-top: 2rem;
+    }
+
+    .project-content h3 {
+      color: #ffd6a5;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-list ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-list li {
+      margin-bottom: 1rem;
     }
 
     a {
-      color: #8fd6d6;
+      position: relative;
+      color: #ffd6a5;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: color 0.3s ease;
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background-color: #f5b4c3;
+      transition: width 0.3s ease;
     }
 
     a:hover {
-      color: #ffd6a5;
-      text-decoration: underline;
+      color: #f5b4c3;
     }
 
-    .box {
-      background-color: #282828;
-      border: 1px solid #444;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(255, 195, 220, 0.1);
+    a:hover::after {
+      width: 100%;
     }
 
     iframe {
-        max-width: 556px;
-        width: 100%;
-        height: 171px;
-        border: none;
-        display: block;
-        margin: 1rem 0;    /* No auto centering */
-        border-radius: 8px;
-    }
-    .discord, .contact {
-      background-color: #232323;
-      padding: 1.2rem;
-      border-radius: 12px;
-      border: 1px solid #333;
-      margin-top: 2rem;
-      box-shadow: 0 0 10px rgba(161, 227, 216, 0.08);
+      max-width: 100%;
+      width: 100%;
+      height: 171px;
+      border: none;
+      margin-top: 1rem;
+      border-radius: 8px;
     }
 
-    p {
-      margin: 0.5rem 0 1.2rem;
+    @media (max-width: 600px) {
+      .header-center h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Beru's Portfolio</h1>
-  <p>Hello, I am <strong>Beru</strong>, a programmer passionate about games and game development. Here are some of my projects:</p>
 
-  <div class="box">
-    <h2>PlatformGen</h2>
-    <p>This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.</p>
-    <a href="https://assetstore.unity.com/packages/tools/game-toolkits/platformgen-324418" target="_blank">Click here</a>
-  </div>
+  <header>
+    <div class="header-content">
+      <div id="language-toggle">
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('fr')">Français</button>
+      </div>
+      <div class="header-center">
+        <h1 id="title">Beru's Portfolio</h1>
+        <p id="subtitle">Programmer passionate about tools, games and game development.</p>
+      </div>
+    </div>
+  </header>
 
-  <div class="box">
-    <h2>Rob The Guard'ner (Itch.io)</h2>
-    <iframe frameborder="0" src="https://itch.io/embed/3553774?border_width=3&amp;bg_color=373737&amp;fg_color=f5b4c3&amp;link_color=db718a&amp;border_color=1b1b1b" width="556" height="171">
-      <a href="https://b3ru.itch.io/rob-the-guardner">Rob The Guard'ner by B3ru</a>
-    </iframe>
-  </div>
+  <!-- Personal Info -->
+  <section>
+    <h2 id="personal-title">Personal Info</h2>
+    <div class="info-list">
+      <ul>
+        <li><span id="email-label">Email:</span> <a href="mailto:sberube1999@gmail.com" id="email-link">sberube1999@gmail.com</a></li>
+        <li><span id="github-label">GitHub:</span> <a href="https://github.com/sberube1999" target="_blank" id="github-link">github.com/sberube1999</a></li>
+        <li><span id="discord-label">Discord:</span> <a href="https://discord.gg/cserhqzNwa" target="_blank" id="discord-link">Join my server</a></li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="discord">
-    <h2>Join My Discord</h2>
-    <p><a href="https://discord.gg/cserhqzNwa" target="_blank">Click here to hang out with me on Discord!</a></p>
-  </div>
+  <!-- Personal Projects -->
+  <section>
+    <h2 id="projects-title">Personal Projects</h2>
+    <div class="project-content">
+      <h3>PlatformGen</h3>
+      <p id="platformgen-desc">This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.</p>
+      <a href="https://assetstore.unity.com/packages/tools/game-toolkits/platformgen-324418" target="_blank" id="platformgen-link">View on Unity Asset Store</a>
+    </div>
+  </section>
 
-  <div class="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:sberube1999@gmail.com">sberube1999@gmail.com</a></p>
-  </div>
+  <!-- Game Jams -->
+  <section>
+    <h2 id="jams-title">Game Jams</h2>
+    <div class="project-content">
+      <h3>Rob The Guard'ner</h3>
+      <iframe src="https://itch.io/embed/3553774?border_width=3&amp;bg_color=373737&amp;fg_color=ffffff&amp;link_color=ffd6a5&amp;border_color=1b1b1b">
+        <a href="https://b3ru.itch.io/rob-the-guardner" id="rob-link">Play Rob The Guard'ner on itch.io</a>
+      </iframe>
+      <a href="https://b3ru.itch.io/rob-the-guardner" target="_blank" id="rob-alt-link">View on Itch.io</a>
+    </div>
+    <div class="project-content">
+      <h3 id="coming-jam">Coming Soon (Brackeys Game Jam 2025.2)</h3>
+    </div>
+  </section>
+
+  <script>
+    const content = {
+      en: {
+        title: "Beru's Portfolio",
+        subtitle: "Programmer passionate about tools, games and game development.",
+        personal: "Personal Info",
+        projects: "Personal Projects",
+        jams: "Game Jams",
+        email: "Email:",
+        github: "GitHub:",
+        discord: "Discord:",
+        join: "Join my server",
+        viewUnity: "View on Unity Asset Store",
+        platformDesc: "This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.",
+        playOnItch: "View on Itch.io",
+        playRob: "Play Rob The Guard'ner on itch.io",
+        coming: "Coming Soon (Brackeys Game Jam 2025.2)"
+      },
+      fr: {
+        title: "Portfolio de Beru",
+        subtitle: "Programmeur passionné par les outils, les jeux et le développement de jeux.",
+        personal: "Infos Personnelles",
+        projects: "Projets Personnels",
+        jams: "Game Jams",
+        email: "Courriel:",
+        github: "GitHub:",
+        discord: "Discord:",
+        join: "Rejoindre mon serveur",
+        viewUnity: "Voir sur Unity Asset Store",
+        platformDesc: "Cet outil génère procéduralement des plateformes 3D et assigne des textures selon des règles définies par l'utilisateur à l'aide de bruit. Fonctionne à l'exécution ou dans l'éditeur.",
+        playOnItch: "Voir sur Itch.io",
+        playRob: "Jouer à Rob The Guard'ner sur itch.io",
+        coming: "À venir (Brackeys Game Jam 2025.2)"
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = content[lang];
+      document.getElementById("title").textContent = t.title;
+      document.getElementById("subtitle").textContent = t.subtitle;
+      document.getElementById("personal-title").textContent = t.personal;
+      document.getElementById("projects-title").textContent = t.projects;
+      document.getElementById("jams-title").textContent = t.jams;
+      document.getElementById("email-label").textContent = t.email;
+      document.getElementById("github-label").textContent = t.github;
+      document.getElementById("discord-label").textContent = t.discord;
+      document.getElementById("discord-link").textContent = t.join;
+      document.getElementById("platformgen-link").textContent = t.viewUnity;
+      document.getElementById("platformgen-desc").textContent = t.platformDesc;
+      document.getElementById("rob-alt-link").textContent = t.playOnItch;
+      document.getElementById("rob-link").textContent = t.playRob;
+      document.getElementById("coming-jam").textContent = t.coming;
+    }
+  </script>
+
 </body>
 </html>
