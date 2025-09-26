@@ -13,11 +13,16 @@
       padding: 0;
     }
 
+        input {
+      caret-color: #f5b3c2; /* Changes the text input caret to red */
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #1b1b1b;
       color: #ffffff;
       line-height: 1.8;
+      cursor: url('images/cursor.svg'), auto;
     }
 
     header {
@@ -52,8 +57,15 @@
     }
 
     #language-toggle button:hover {
-      background-color: #f5b4c3;
+      background-color: #f5b3c2;
       color: #282828;
+    }
+
+    .project-content img {
+      margin: 1rem 0;
+      max-width: 100%;
+      border-radius: 8px;
+      display: block;
     }
 
     .header-center {
@@ -150,10 +162,10 @@
         font-size: 2rem;
       }
     }
+
   </style>
 </head>
 <body>
-
   <header>
     <div class="header-content">
       <div id="language-toggle">
@@ -185,6 +197,7 @@
     <div class="project-content">
       <h3>PlatformGen</h3>
       <p id="platformgen-desc">This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.</p>
+      <img src="images/platformgen_preview.png" alt="PlatformGen preview" style="margin:1rem 0; max-width:100%; border-radius:8px;">
       <a href="https://assetstore.unity.com/packages/tools/game-toolkits/platformgen-324418" target="_blank" id="platformgen-link">View on Unity Asset Store</a>
     </div>
   </section>
