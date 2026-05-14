@@ -3,283 +3,402 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beru's Portfolio</title>
+  <title>Samuel Bérubé</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --accent-pink: #f5b4c3;
+      --accent-gold: #ffd6a5;
+      --text-main: #e0e0e0;
+      --text-dim: #a0a0a0;
+      --border: #333;
     }
 
-        input {
-      caret-color: #f5b3c2; /* Changes the text input caret to red */
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #1b1b1b;
-      color: #ffffff;
-      line-height: 1.8;
-      cursor: url('images/cursor.svg'), auto;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      padding: 2rem 1rem;
-      background: #2b2b2b;
-    }
+    header { padding: 5rem 1.5rem 3rem; text-align: center; max-width: 900px; margin: 0 auto; }
+    .header-center h1 { font-size: 3rem; font-weight: 600; color: var(--accent-pink); margin-bottom: 0.5rem; }
+    .header-center p { font-size: 1.1rem; color: var(--text-dim); font-weight: 300; max-width: 650px; margin: 0 auto; }
 
-    .header-content {
+    section { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
       display: flex;
-      justify-content: center;
-      position: relative;
+      align-items: center;
     }
+    h2::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 1rem; }
 
-    #language-toggle {
-      position: absolute;
-      left: 0;
-      top: 0;
-      padding: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    #language-toggle button {
-      background-color: transparent;
-      color: #ffd6a5;
-      border: 1px solid #444;
-      border-radius: 6px;
-      padding: 0.3rem 0.8rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    #language-toggle button:hover {
-      background-color: #f5b3c2;
-      color: #282828;
-    }
-
-    .project-content img {
-      margin: 1rem 0;
-      max-width: 100%;
+    .info-list { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .info-item {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
       border-radius: 8px;
+      border: 1px solid var(--border);
+      flex: 1;
+      min-width: 200px;
+    }
+    .info-item span { display: block; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: border-color 0.3s ease;
+    }
+    .project-card:hover { border-color: var(--accent-pink); }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: #333;
+      color: var(--accent-pink);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .project-card h3 { font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.8rem; }
+    iframe { width: 100%; height: 180px; border: none; border-radius: 12px; margin: 1rem 0; background: #000; }
+
+    .jam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .jam-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .jam-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-gold);
+    }
+
+    .jam-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #000;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .jam-content {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .jam-card h3 { font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 0.5rem; }
+    .jam-card p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.2rem; flex-grow: 1; }
+
+    a { color: var(--accent-gold); text-decoration: none; font-weight: 600; transition: color 0.2s ease; }
+    a:hover { color: var(--accent-pink); }
+
+    @media (max-width: 600px) {
+      .header-center h1 { font-size: 2.2rem; }
+      .jam-grid { grid-template-columns: 1fr; }
+    }
+
+    .visual-container {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    .featured-visual {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
-    .header-center {
-      text-align: center;
-    }
-
-    .header-center h1 {
-      font-size: 2.5rem;
-      color: #f5b4c3;
-    }
-
-    .header-center p {
-      margin-top: 0.5rem;
-      color: #ffffff;
-    }
-
-    section {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: #f5b4c3;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #444;
-      padding-bottom: 0.3rem;
-    }
-
-    .info-list, .project-content {
-      background-color: #282828;
-      border: 1px solid #444;
+    .gallery-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 1.5rem 0;
       border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 0 10px rgba(255, 195, 220, 0.05);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
     }
 
-    .project-content + .project-content {
-      margin-top: 2rem;
+    .gallery-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
     }
 
-    .project-content h3 {
-      color: #ffd6a5;
+    .gallery-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .gallery-item img, 
+    .gallery-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s ease;
+      font-size: 1.2rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .gallery-nav:hover {
+      background: var(--accent-pink);
+      color: #000;
+    }
+
+    .gallery-nav.next {
+      right: 0;
+      border-radius: 4px 0 0 4px;
+    }
+
+.section-subtitle {
+      font-size: 0.8rem;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 2rem 0 1rem 0;
+      border-left: 2px solid var(--accent-pink);
+      padding-left: 10px;
+    }
+
+    .contribution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contribution-item h4 {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
       margin-bottom: 0.5rem;
     }
 
-    .info-list ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .info-list li {
-      margin-bottom: 1rem;
-    }
-
-    a {
-      position: relative;
-      color: #ffd6a5;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0;
-      height: 2px;
-      background-color: #f5b4c3;
-      transition: width 0.3s ease;
-    }
-
-    a:hover {
-      color: #f5b4c3;
-    }
-
-    a:hover::after {
-      width: 100%;
-    }
-
-    iframe {
-      max-width: 100%;
-      width: 100%;
-      height: 171px;
-      border: none;
-      margin-top: 1rem;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 600px) {
-      .header-center h1 {
-        font-size: 2rem;
-      }
+    .contribution-item p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
     }
 
   </style>
 </head>
 <body>
+
   <header>
-    <div class="header-content">
-      <div id="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-      </div>
-      <div class="header-center">
-        <h1 id="title">Beru's Portfolio</h1>
-        <p id="subtitle">Programmer passionate about tools, games and game development.</p>
-      </div>
+    <div class="header-center">
+      <h1>Samuel Bérubé</h1>
+      <p>Programmer passionate about tools and games</p>
     </div>
   </header>
 
-  <!-- Personal Info -->
   <section>
-    <h2 id="personal-title">Personal Info</h2>
+    <h2>Contact</h2>
     <div class="info-list">
-      <ul>
-        <li><span id="email-label">Email:</span> <a href="mailto:sberube1999@gmail.com" id="email-link">sberube1999@gmail.com</a></li>
-        <li><span id="github-label">GitHub:</span> <a href="https://github.com/sberube1999" target="_blank" id="github-link">github.com/sberube1999</a></li>
-        <!-- <li><span id="discord-label">Discord:</span> <a href="https://discord.gg/cserhqzNwa" target="_blank" id="discord-link">Join my server</a></li> -->
-      </ul>
+      <div class="info-item">
+        <span>Email</span>
+        <a href="mailto:sberube1999@gmail.com">sberube1999@gmail.com</a>
+      </div>
+      <div class="info-item">
+        <span>Network</span>
+        <a href="https://github.com/sberube1999" target="_blank">github.com/sberube1999</a>
+      </div>
     </div>
   </section>
 
-  <!-- Personal Projects -->
+<section>
+  <h2>Featured Projects</h2>
+
+  <!-- LUNAR LOUNGE -->
+  <div class="project-card">
+    <div class="badge">Ubisoft Game Lab 2026</div>
+    <h3>Lunar Lounge</h3>
+    <p>
+      A competitive intergalactic server simulation developed for the 
+      <strong>Ubisoft Game Lab competition</strong>. Our team completed this project within a 
+      <strong>10-week development cycle</strong> while balanced against a full-time 
+      University schedule.</p>
+    
+    <div class="gallery-container" id="lunar-gallery">
+      <div class="gallery-wrapper">
+
+        <div class="gallery-item active">
+          <video autoplay muted loop playsinline controls><source src="videos/LunarLoungeFull.mp4" type="video/mp4"></video>
+        </div>
+        <div class="gallery-item">
+          <img src="images/llss1.png" alt="Lunar Lounge screenshot">
+        </div>
+        <div class="gallery-item">
+          <img src="images/llss2.png" alt="Lunar Lounge screenshot">
+        </div>
+        <div class="gallery-item">
+          <img src="images/llss3.png" alt="Lunar Lounge screenshot">
+        </div>
+        <div class="gallery-item">
+          <img src="images/llss4.png" alt="Lunar Lounge screenshot">
+        </div>
+
+      </div>
+      <button class="gallery-nav prev" onclick="moveGallery('lunar-gallery', -1)">&#10094;</button>
+      <button class="gallery-nav next" onclick="moveGallery('lunar-gallery', 1)">&#10095;</button>
+    </div>
+
+  <h4 class="section-subtitle">Main Programming Contributions</h4>
+  <div class="contribution-grid">
+    <div class="contribution-item">
+      <h4>Physics & Locomotion</h4>
+      <p>Developed acceleration-based movement with velocity-dependent turn rates to achieve a fluid "rollerblades" game feel. Developed custom grounded/slope-handling logic and physics-driven mechanics including dashing, stuns, and directional bumps.</p>
+    </div>
+    <div class="contribution-item">
+      <h4>Gameplay Systems</h4>
+      <p>I made a modular event system, including dynamic spawning of food hazards triggered by clients actions and time-based power-up spawning. Developed the logic and mechanics for all in-game hazards and player buffs.</p>
+    </div>
+    <div class="contribution-item">
+      <h4>Technical Tools & more</h4>
+      <p>Built a custom Debug Command Tool to accelerate internal testing and managed the Lobby logic.</p>
+    </div>
+  </div>
+
+
+    <a href="https://b3ru.itch.io/lunar-lounge" target="_blank">→ Play on Itch.io</a>
+  </div>
+
+  <!-- PLATFORM GEN -->
+  <div class="project-card">
+    <div class="badge">Engine Tools</div>
+    <h3>PlatformGen</h3>
+    <p>This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.</p>
+    
+    <div class="gallery-container" id="platform-gallery">
+      <div class="gallery-wrapper">
+        <div class="gallery-item active">
+          <img src="images/platformGen_preview.png" alt="PlatformGen preview image">
+        </div>
+        <div class="gallery-item">
+          <img src="images/platss1.png" alt="PlatformGen image">
+        </div>
+        <div class="gallery-item">
+          <img src="images/platss2.png" alt="PlatformGen image">
+        </div>
+        <div class="gallery-item">
+          <img src="images/platss3.png" alt="PlatformGen image">
+        </div>
+        <div class="gallery-item">
+          <video autoplay muted loop playsinline controls><source src="videos/PlatformGenDemo.mp4" type="video/mp4"></video>
+        </div>
+      </div>
+      
+      <button class="gallery-nav prev" onclick="moveGallery('platform-gallery', -1)">&#10094;</button>
+      <button class="gallery-nav next" onclick="moveGallery('platform-gallery', 1)">&#10095;</button>
+    </div>
+    <a href="https://b3ru.itch.io/lunar-lounge" target="_blank">→ View on Asset Store</a>
+  </div>
+
+</section>
+
   <section>
-    <h2 id="projects-title">Personal Projects</h2>
-    <div class="project-content">
-      <h3>PlatformGen</h3>
-      <p id="platformgen-desc">This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.</p>
-      <img src="images/platformgen_preview.png" alt="PlatformGen preview" style="margin:1rem 0; max-width:100%; border-radius:8px;">
-      <a href="https://assetstore.unity.com/packages/tools/game-toolkits/platformgen-324418" target="_blank" id="platformgen-link">View on Unity Asset Store</a>
+    <h2>Game Jams</h2>
+    <div class="jam-grid">
+      
+      <div class="jam-card">
+        <img src="images/afterp.png" alt="Afterpulse" class="jam-image">
+        <div class="jam-content">
+          <h3>Afterpulse</h3>
+          <p>A tactical top-down action game built around sound-based visibility. Features a unique echolocation mechanic where enemies are only revealed through noise.</p>
+          <a href="https://b3ru.itch.io/afterpulse" target="_blank">→ Play on Itch</a>
+        </div>
+      </div>
+
+      <div class="jam-card">
+        <img src="images/rob.png" alt="Rob The Guard'ner" class="jam-image">
+        <div class="jam-content">
+          <h3>Rob The Guard'ner</h3>
+          <p>A cozy farming simulator centered on crop management and automation.</p>
+          <a href="https://b3ru.itch.io/rob-the-guardner" target="_blank">→ Play on Itch</a>
+        </div>
+      </div>
+
+      <div class="jam-card">
+        <img src="images/biscat.png" alt="Biscat" class="jam-image">
+        <div class="jam-content">
+          <h3>Biscat</h3>
+          <p>A mischievous cat simulator centered on environmental interaction and stealth.</p>
+          <a href="https://b3ru.itch.io/biscat" target="_blank">→ Play on Itch</a>
+        </div>
+      </div>
+
     </div>
   </section>
+  <br/><br/><br/>
 
-  <!-- Game Jams -->
-  <section>
-    <h2 id="jams-title">Game Jams</h2>
-    <div class="project-content">
-
-      <h3>Rob The Guard'ner</h3>
-      <iframe src="https://itch.io/embed/3553774?border_width=3&amp;bg_color=373737&amp;fg_color=ffffff&amp;link_color=ffd6a5&amp;border_color=1b1b1b">
-        <a href="https://b3ru.itch.io/rob-the-guardner" id="rob-link">Play Rob The Guard'ner on itch.io</a>
-      </iframe>
-      <a href="https://b3ru.itch.io/rob-the-guardner" target="_blank" id="rob-alt-link">View on Itch.io</a>
-
-    </div>
-    <div class="project-content">
-
-      <h3>Biscat</h3>
-          <iframe frameborder="0" src="https://itch.io/embed/3840342?border_width=3&amp;bg_color=373737&amp;fg_color=ffffff&amp;link_color=ffd6a5&amp;border_color=1b1b1b">
-            <a href="https://b3ru.itch.io/biscat" id="biscat-link">Play Biscat on itch.io</a>
-          </iframe>
-      <a href="https://b3ru.itch.io/biscat" target="_blank" id="biscat-alt-link">View on Itch.io</a>
-
-    </div>
-  </section>
 
   <script>
-    const content = {
-      en: {
-        title: "Beru's Portfolio",
-        subtitle: "Programmer passionate about tools, games and game development.",
-        personal: "Personal Info",
-        projects: "Personal Projects",
-        jams: "Game Jams",
-        email: "Email:",
-        github: "GitHub:",
-        discord: "Discord:",
-        join: "Join my server",
-        viewUnity: "View on Unity Asset Store",
-        platformDesc: "This tool procedurally generates 3D platforms and assigns textures using user-defined, noise-based rules. Works at runtime or in the editor.",
-        playOnItch: "View on Itch.io",
-        playRob: "Play Rob The Guard'ner on itch.io",
-        playBiscat: "Play Rob The Guard'ner on itch.io"
-      },
-      fr: {
-        title: "Portfolio de Beru",
-        subtitle: "Programmeur passionné par les outils, les jeux et le développement de jeux.",
-        personal: "Infos Personnelles",
-        projects: "Projets Personnels",
-        jams: "Game Jams",
-        email: "Courriel:",
-        github: "GitHub:",
-        discord: "Discord:",
-        join: "Rejoindre mon serveur",
-        viewUnity: "Voir sur Unity Asset Store",
-        platformDesc: "Cet outil génère procéduralement des plateformes 3D et assigne des textures selon des règles définies par l'utilisateur à l'aide de bruit. Fonctionne à l'exécution ou dans l'éditeur.",
-        playOnItch: "Voir sur Itch.io",
-        playRob: "Jouer à Rob The Guard'ner sur itch.io",
-        playBiscat: "Jouer à Biscat sur itch.io"
-      }
-    };
+  function moveGallery(containerId, direction) {
+    const container = document.getElementById(containerId);
+    const items = container.querySelectorAll('.gallery-item');
+    let activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
 
-    function setLanguage(lang) {
-      const t = content[lang];
-      document.getElementById("title").textContent = t.title;
-      document.getElementById("subtitle").textContent = t.subtitle;
-      document.getElementById("personal-title").textContent = t.personal;
-      document.getElementById("projects-title").textContent = t.projects;
-      document.getElementById("jams-title").textContent = t.jams;
-      document.getElementById("email-label").textContent = t.email;
-      document.getElementById("github-label").textContent = t.github;
-      document.getElementById("discord-label").textContent = t.discord;
-      document.getElementById("discord-link").textContent = t.join;
-      document.getElementById("platformgen-link").textContent = t.viewUnity;
-      document.getElementById("platformgen-desc").textContent = t.platformDesc;
-      document.getElementById("rob-alt-link").textContent = t.playOnItch;
-      document.getElementById("biscat-alt-link").textContent = t.playOnItch;
-      document.getElementById("rob-link").textContent = t.playRob;
-      document.getElementById("biscat-link").textContent = t.playBiscat;
-    }
-  </script>
-
+    items[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + direction + items.length) % items.length;
+    items[activeIndex].classList.add('active');
+  }
+</script>
 </body>
 </html>
