@@ -238,6 +238,49 @@
       line-height: 1.5;
     }
 
+    .log-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .log-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .log-header {
+      margin-bottom: 0.8rem;
+    }
+
+    .log-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-main);
+    }
+
+    .log-card p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .log-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .log-links a {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+    }
+
   </style>
 </head>
 <body>
@@ -356,6 +399,24 @@
   </div>
 
 </section>
+
+<section>
+    <h2>Devlogs & Documentation</h2>
+    <div class="log-grid">
+      
+      <div class="log-card">
+        <div class="log-header">
+          <h3>2 dimensions Prototype Journal</h3>
+        </div>
+        <p>Small prototype where both players occupy the same physical space but in different dimensions, similar to the Shadowfell in D&D or the Upside Down in Stranger Things</p>
+        <div class="log-links">
+          <a href="https://docs.google.com/document/d/1DuFjFNFRPwUB_8zI2GR-JVxmtIXeUnG-0vk7s4CkMew/edit?usp=sharing" target="_blank">→ Read Journal</a>
+          <a href="https://www.youtube.com/watch?v=NZwpEM3v0zA" target="_blank">→ Watch Video</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <section>
     <h2>Game Jams</h2>
